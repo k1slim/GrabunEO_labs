@@ -15,6 +15,7 @@ class MyString {
 		void addToString();
 		int getFactSize() const;
 		int getMaxSize() const;
+
 //		Operators
 		MyString & operator=(const MyString &rhs);
 		MyString & operator+=(const MyString &rhs);
@@ -26,4 +27,7 @@ class MyString {
 		friend bool operator>=(const MyString &first, const MyString &second);
 		friend bool operator<=(const MyString &first, const MyString &second);
 		friend const MyString operator+(const MyString &first, const MyString &second);
+
+//		Static
+		static void MyString::sort(int k,MyString *strArray);
 };

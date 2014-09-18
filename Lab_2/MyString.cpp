@@ -5,10 +5,8 @@ using namespace std;
 
 //		Constructors
 
-MyString::MyString():n(200),str(nullptr){
-	cout<<"Enter a text.Max count of letters= "<<n-1<<endl;
-	str=new char[n];
-	cin.getline(str,n);
+MyString::MyString():n(0),str(nullptr){
+
 };
 
 MyString::MyString(int n):n(n),str(new char[n]){
@@ -109,15 +107,18 @@ char & MyString::operator[](int i) const{
 };
 
 bool operator>(const MyString &first, const MyString &second) {
-	int minN=(first.getFactSize()<second.getFactSize())?first.getFactSize():first.getFactSize();
-	for(int i=0;i<=minN;i++){
+	int minN=(first.getFactSize()<second.getFactSize())?first.getFactSize():second.getFactSize();
+	for(int i=0;i<minN;i++){
 		if(first[i]!=second[i]){
 			if(first[i]>second[i]){
 				return true;
 			}
+			else{
+				return false;
+			}
 		}
 	}
-	return false;
+	return (first.getFactSize()>second.getFactSize());
 };
 
 bool operator<(const MyString &first, const MyString &second){
@@ -147,4 +148,16 @@ bool operator>=(const MyString &first, const MyString &second){
 
 bool operator<=(const MyString &first, const MyString &second){
 	return !(first>second);
+};
+
+void MyString::sort(int k,MyString *strArray){
+	for(int i=1;i<k;++i){
+		for(int j=i+1;j<k;++j){
+			if(strArray[i]>strArray[j]){
+				MyString timed=strArray[j];
+				strArray[j]=strArray[i];
+				strArray[i]=timed;
+			}
+		}
+	}
 };
